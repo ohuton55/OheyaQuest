@@ -1,0 +1,27 @@
+*{
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	/* タップハイライト無効 */
+	-webkit-touch-callout: none;
+	/* 長押しメニュー禁止 */
+}
+html, body, .app {
+	width: 100%;	/* 横幅100％ */
+	height: 100%;	/* 高さ100％ */
+	margin: 0;		/* 外幅0 */
+	padding: 0;		/* 内幅0 */
+	overflow: hidden;	/* はみ出した時は隠す */
+	position: absolute;	/* 位置固定 */
+}
+body {
+	background: #f0f;	/* 背景は紫 */
+}
+#app canvas{
+	/* ドット絵表示 */
+	image-rendering: -webkit-optimize-contrast;	/* Safari用 */
+	image-rendering: -moz-crisp-edges;			/* FireFox用 */
+	image-rendering: pixelated;
+	position: absolute;		/* 位置固定 */
+}
+#test {
+	color: #fff;
+}
