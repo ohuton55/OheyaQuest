@@ -6,6 +6,8 @@ class SceneTitle {
 	static start() {
 			let element = document.getElementById('test');
 			element.insertAdjacentHTML('afterend', '<p>SceneTitle</p>');
+			
+			GameAnim.add(this.anim.bind(this, gameData));  // アニメの登録
 	}
 	//------------------------------------------------------------
 	// アニメーション
