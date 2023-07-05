@@ -4,7 +4,8 @@ class SceneTitle {
 
 	static start() {
 
-	console.log("test");	
+		console.log("test");	
+
 
 	}
 
