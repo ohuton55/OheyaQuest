@@ -1,20 +1,11 @@
 'use strict';
 
-eruda.init();
 
-SceneTitle.start();
+Function domFinished(){
+	console.log('got it!');
+	
+	eruda.init();
 
-function OnButtonClick() {
-console.log(document.getElementById('myid'))
+	SceneTitle.start();
+
 }
-
-function domFinished(){
-	alert('DOMContentLoaded');
-	const btn = document.getElementById('btn');
-	btn.addEventListner('click',  OnButtonClick);
-}
-
-//window.onload = function() {document.addEventListner('DOMContentLoaded', domFinished)};
-
-window.onload = function() { console.log(document.getElementById('btn')) };
-
