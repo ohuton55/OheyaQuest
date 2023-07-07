@@ -1,11 +1,7 @@
 'use strict';
 
-
-Function domFinished(){
-	console.log('got it!');
-	
+window.onload = function() {
 	eruda.init();
-
+	console.log('got it!');
 	SceneTitle.start();
-
-}
+};

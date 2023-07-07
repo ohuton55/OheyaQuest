@@ -25,8 +25,10 @@ body {
 #test {
 	color: #fff;
 }
-#btn{
-	background: #00f;
-	width: 200;
-	height: 200;
-}
+#text-button{
+  display: block;
+  cursor: pointer;
+  width: 160px;
+  text-align: center;
+  border: 1px solid #232323;
+  }
