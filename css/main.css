@@ -6,13 +6,11 @@
 }
 html, body, .app {
 	width: 100%;	/* 横幅100％ */
-	height: 100%;	/* 高さ100％ */
+	/*height: 100%;	/* 高さ100％ */
 	margin: 0;		/* 外幅0 */
 	padding: 0;		/* 内幅0 */
 	overflow: hidden;	/* はみ出した時は隠す */
-	position: absolute;	/* 位置固定 */
-}
-body {
+/*	position: absolute;	/* 位置固定 */
 	background: #f0f;	/* 背景は紫 */
 }
 #app canvas{
@@ -26,9 +24,10 @@ body {
 	color: #fff;
 }
 #text-button{
-  display: block;
+  display: block; 
   cursor: pointer;
-  width: 160px;
+  width: 100%;
   text-align: center;
-  border: 1px solid #232323;
+  border: 10px solid #232323;
+  background: #fff; 
   }
