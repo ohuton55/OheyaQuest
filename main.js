@@ -37,16 +37,21 @@ function TouchTextButton(e) {
 	
 	const x  = e.touches[0].pageX;
 	const y = e.touches[0].pageY;
-			document.getElementById("text").innerHTML = "X:" + x + ". Y:" + y;
+	document.getElementById("text").innerHTML = "X:" + x + ". Y:" + y;
 } 
 		
-function testContext() {
+function testContext(e) {
 
+	const x = e.touches[0].pageX;
+	const y = e.touches[0].pageY;
 	var targetClass = getRuleBySelector('.cvl');
 	var cv = document.getElementById('cvl');	// 要素を得る
 	var ct = cv.getContext('2d');		// 2D(平面)コンテキストを得る
-	ct.fillStyle = '#ffcccc';
+	ct.fillStyle = '#0f0f0f';
+	cv.width = x;
+	cv.height = y;
 	ct.fillRect(0, 0, cv.width, cv.height);
+
 }		
 
 // 指定セレクタのCSSルールを取得する
