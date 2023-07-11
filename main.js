@@ -51,7 +51,10 @@ function testContext(e) {
 	cv.width = x;
 	cv.height = y;
 	ct.fillRect(0, 0, cv.width, cv.height);
-
+	
+	const image = new Image();
+	image.src = 'image/fontWhite.png';
+	document.body.appendChild(image);
 }		
 
 // 指定セレクタのCSSルールを取得する
