@@ -54,13 +54,15 @@ function testContext(e) {
 	
 	const image = new Image();
 	image.src = 'image/fontWhite.png';
+	image.style.imageRendering = '-webkit-optimize-contrast';
+	image.style.imageRendering = '-moz-crisp-edges';
 	image.style.imageRendering = 'pixelated';
 	
 	const fontH = 10;
 	const text = 'TEST';
 	for (let i = 0; i < text.length; i++) {
 		const refY = text.charCodeAt(i) * fontH;	// Y参照位置
-		ct.drawImage(image, 0, refY, 5, 10, 100 + i * 20, 50, 10, 20
+		ct.drawImage(image, 0, refY, 5, 10, 100 + i * 10, 50, 5, 10
 		);
 	}	
 //	document.body.appendChild(image);
