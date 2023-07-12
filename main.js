@@ -54,7 +54,15 @@ function testContext(e) {
 	
 	const image = new Image();
 	image.src = 'image/fontWhite.png';
-	document.body.appendChild(image);
+	
+	const fontH = 10;
+	const text = 'TEST';
+	for (let i = 0; i < text.length; i++) {
+		const refY = text.charCodeAt(i) * fontH;	// Y参照位置
+		ct.drawImage(image, 0, refY, 5, 10, 100 + i * 15, 100, 10, 20
+		);
+	}
+//	document.body.appendChild(image);
 }		
 
 // 指定セレクタのCSSルールを取得する
