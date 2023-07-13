@@ -52,19 +52,27 @@ function testContext(e) {
 	cv.height = y;
 	ct.fillRect(0, 0, cv.width, cv.height);
 	
-	const image = new Image();
-	image.src = 'image/fontWhite.png';
-	image.style.imageRendering = '-webkit-optimize-contrast';
-	image.style.imageRendering = '-moz-crisp-edges';
-	image.style.imageRendering = 'pixelated';
+	GameImage.load('fontWhite', 'image/fontWhite.png');
+	UiText.setImage('white', GameImage.images['fontWhite']);
 	
-	const fontH = 10;
-	const text = 'TEST';
-	for (let i = 0; i < text.length; i++) {
-		const refY = text.charCodeAt(i) * fontH;	// Y参照位置
-		ct.drawImage(image, 0, refY, 5, 10, 100 + i * 10, 50, 5, 10
-		);
-	}	
+	UiText.draw(ct, 'test', 100, 100, 28, 'white');
+	UiText.draw(ct, 'TEST2', 100, 200, 10, 'white');
+	UiText.draw(ct, 'onaka ippai!', 100, 220, 5, 'white');
+
+//	const image = new Image();
+//	image.src = 'image/fontWhite.png';	
+			
+//	image.style.imageRendering = '-webkit-optimize-contrast';
+//	image.style.imageRendering = '-moz-crisp-edges';
+//	image.style.imageRendering = 'pixelated';
+	
+//	const fontH = 10;
+//	const text = 'TEST';
+//	for (let i = 0; i < text.length; i++) {
+//		const refY = text.charCodeAt(i) * fontH;	// Y参照位置
+//		ct.drawImage(image, 0, refY, 5, 10, 100 + i * 28, 50, 28, 55
+//		);
+//	}
 //	document.body.appendChild(image);
 }		
 
