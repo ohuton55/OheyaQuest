@@ -51,20 +51,26 @@ function testContext(e) {
 	cv.width = x;
 	cv.height = y;
 	ct.fillRect(0, 0, cv.width, cv.height);
+
+	const image = new Image();
+	image.src = 'image/test.png';	
+	image.style.imageRendering = '-webkit-optimize-contrast';
+	image.style.imageRendering = '-moz-crisp-edges';
+	image.style.imageRendering = 'pixelated';
+	ct.drawImage(image, 0 + x / 5 , 0 + y / 5, 500, 500,  100,  100, 200, 200);
 	
 	GameImage.load('fontWhite', 'image/fontWhite.png');
 	UiText.setImage('white', GameImage.images['fontWhite']);
-	
-	UiText.draw(ct, 'test', 100, 100, 28, 'white');
-	UiText.draw(ct, 'TEST2', 100, 200, 10, 'white');
-	UiText.draw(ct, 'onaka ippai!', 100, 220, 5, 'white');
+	GameImage.load('fontBlack', 'image/fontBlack.png');
+	UiText.setImage('black', GameImage.images['fontBlack']);
 
-//	const image = new Image();
-//	image.src = 'image/fontWhite.png';	
-			
-//	image.style.imageRendering = '-webkit-optimize-contrast';
-//	image.style.imageRendering = '-moz-crisp-edges';
-//	image.style.imageRendering = 'pixelated';
+	UiText.drawCenter(ct, 'test', 100, 100, 28, 'white');
+	UiText.drawCenter(ct, 'TEST2', 100, 200, 10, 'white');
+	UiText.draw(ct, 'onaka ippai!', 100, 220, 5, 'white');
+	UiText.drawFrame(ct, 'Frame test', 200, 100, 10, 'black', 1);
+	UiText.drawFrame(ct, 'Frame test', 200, 200, 10, 'white', 1);
+	//UiText.testFrame(ct, 'Frame TEST', 200, 100, 5, 'black', 1);
+	//UiText.testFrame(ct, 'Frame TEST', 200, 100, 5, 'white', 1);
 	
 //	const fontH = 10;
 //	const text = 'TEST';
