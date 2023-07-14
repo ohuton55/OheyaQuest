@@ -9,7 +9,9 @@ window.onload = function() {
 	console.log(result);
 	
 	var result2 = Boolean(document.addEventListener);
-	console.log(result2);
+	console.log(result2)
+	
+	const gameData = new GameData();
 	
 //	document.addEventListener("touchstart", TouchEventFunc);
 //	document.addEventListener("touchmove", TouchEventFunc);
@@ -40,7 +42,7 @@ function TouchTextButton(e) {
 	document.getElementById("text").innerHTML = "X:" + x + ". Y:" + y;
 } 
 		
-function testContext(e) {
+function testContext(e, gameData) {
 
 	const x = e.touches[0].pageX;
 	const y = e.touches[0].pageY;
@@ -63,9 +65,24 @@ function testContext(e) {
 	UiText.setImage('white', GameImage.images['fontWhite']);
 	GameImage.load('fontBlack', 'image/fontBlack.png');
 	UiText.setImage('black', GameImage.images['fontBlack']);
+	
+	const w = gameData.w;
+	const h = gameData.h;
+	
+	console.log(w)
+	console.log(h)
+	
+	const textArr = [
+		'OheyaQuest',
+		'Please Click!',
+		'Created by Yuuka Kumai',
+		'Sound by Maoudamashii'
+		];
 
-	UiText.drawCenter(ct, 'test', 100, 100, 28, 'white');
-	UiText.drawCenter(ct, 'TEST2', 100, 200, 10, 'white');
+	UiText.drawCenter(ct, textArr[0], 100, 100, 28, 'white');
+	UiText.drawCenter(ct, textArr[1], 100, 200, 10, 'white');
+	UiText.drawCenter(ct, textArr[2], 120, 200, 10, 'white');
+	UiText.drawCenter(ct, textArr[3], 140, 200, 10, 'white');
 	UiText.draw(ct, 'onaka ippai!', 100, 220, 5, 'white');
 	UiText.drawFrame(ct, 'Frame test', 200, 100, 10, 'black', 1);
 	UiText.drawFrame(ct, 'Frame test', 200, 200, 10, 'white', 1);
