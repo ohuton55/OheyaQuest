@@ -3,15 +3,18 @@
 window.onload = function() {
 	eruda.init();
 	console.log('got it!');
+	
+	const gameData = new GameData();
+	
 	SceneTitle.start();
+	SceneTitle.anim(gameData);
 	
 	var result = Boolean( window.TouchEvent );
 	console.log(result);
 	
 	var result2 = Boolean(document.addEventListener);
 	console.log(result2)
-	
-	const gameData = new GameData();
+
 	
 //	document.addEventListener("touchstart", TouchEventFunc);
 //	document.addEventListener("touchmove", TouchEventFunc);
@@ -33,6 +36,7 @@ function TouchEventFunc(e) {
 		// test output
 		console.log(touch);
 	}
+
 }
 
 function TouchTextButton(e) {
@@ -66,11 +70,15 @@ function testContext(e, gameData) {
 	GameImage.load('fontBlack', 'image/fontBlack.png');
 	UiText.setImage('black', GameImage.images['fontBlack']);
 	
-	const w = gameData.w;
-	const h = gameData.h;
 	
-	console.log(w)
-	console.log(h)
+	const test = new GameData();
+	console.log(test.w);	
+	
+//	const w = gameData.w;
+//	const h = gameData.h;
+	
+//	console.log(w)
+//	console.log(h)
 	
 	const textArr = [
 		'OheyaQuest',
