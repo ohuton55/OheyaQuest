@@ -3,12 +3,19 @@
 window.onload = function() {
 	eruda.init();
 	console.log('got it!');
-	
-	const gameData = new GameData();
+	const gameData  = new GameData();	// ゲーム データ
 	
 	SceneTitle.start();
 	SceneTitle.anim(gameData);
 	
+	//------------------------------------------------------------
+	// 初期化
+
+	const id = '#app';
+//	gameData.canvaArr = GameCanvas.initCanvasArr(id, gameData);
+	gameData.canvasArr = GameCanvas.start(id);
+	console.log(Object.keys(gameData));
+			
 	var result = Boolean( window.TouchEvent );
 	console.log(result);
 	
@@ -40,13 +47,12 @@ function TouchEventFunc(e) {
 }
 
 function TouchTextButton(e) {
-	
 	const x  = e.touches[0].pageX;
 	const y = e.touches[0].pageY;
 	document.getElementById("text").innerHTML = "X:" + x + ". Y:" + y;
 } 
 		
-function testContext(e, gameData) {
+function testContext(e) {
 
 	const x = e.touches[0].pageX;
 	const y = e.touches[0].pageY;
@@ -71,8 +77,8 @@ function testContext(e, gameData) {
 	UiText.setImage('black', GameImage.images['fontBlack']);
 	
 	
-	const test = new GameData();
-	console.log(test.w);	
+//	const test = new GameData();
+//	console.log(test.w);	
 	
 //	const w = gameData.w;
 //	const h = gameData.h;
