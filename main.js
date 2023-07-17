@@ -5,16 +5,17 @@ window.onload = function() {
 	console.log('got it!');
 	const gameData  = new GameData();	// ゲーム データ
 	
-	SceneTitle.start();
-	SceneTitle.anim(gameData);
 	
 	//------------------------------------------------------------
 	// 初期化
-
 	const id = '#app';
-//	gameData.canvaArr = GameCanvas.initCanvasArr(id, gameData);
-	gameData.canvasArr = GameCanvas.start(id);
+	// canvasArrを初期化する
+	gameData.canvasArr = GameCanvas.initCanvasArr(id, gameData);
+	
+	//------------------------------------------------------------
 	console.log(Object.keys(gameData));
+	console.log(Object.keys(gameData.canvasArr[0]));
+	console.log(gameData.canvasArr[2].context.imageSmoothingEnabled);
 			
 	var result = Boolean( window.TouchEvent );
 	console.log(result);
@@ -22,6 +23,8 @@ window.onload = function() {
 	var result2 = Boolean(document.addEventListener);
 	console.log(result2)
 
+	SceneTitle.start();
+	SceneTitle.anim(gameData);
 	
 //	document.addEventListener("touchstart", TouchEventFunc);
 //	document.addEventListener("touchmove", TouchEventFunc);

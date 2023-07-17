@@ -8,8 +8,12 @@ class SceneTitle {
 
 		console.log("test");	
 		console.log(document.getElementById("myid"));
+		this.test();
 	}
-	
+
+	static test() {
+		console.log(this);		
+	}	
 	//------------------------------------------------------------
 	// tap
 	static tap(){
