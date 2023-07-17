@@ -6,11 +6,11 @@
 }
 html, body, .app {
 	width: 100%;	/* 横幅100％ */
-	/*height: 100%;	/* 高さ100％ */
-	margin: 0;		/* 外幅0 */
+	height: 100%;	/* 高さ100％ */
+	margin: 0 auto;		/* 外幅0 */
 	padding: 0;		/* 内幅0 */
 	overflow: hidden;	/* はみ出した時は隠す */
-/*	position: absolute;	/* 位置固定 */
+	/*position: relative;	/* 基準 */
 	background: #f0f;	/* 背景は紫 */
 }
 #app canvas{
@@ -18,7 +18,10 @@ html, body, .app {
 	image-rendering: -webkit-optimize-contrast;	/* Safari用 */
 	image-rendering: -moz-crisp-edges;			/* FireFox用 */
 	image-rendering: pixelated;
-	position: absolute;		/* 位置固定 */
+	position: absolute;	/* 位置固定 */
+	top: 50%;		/* 中央よせ */
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 #test {
 	color: #fff;
@@ -31,10 +34,28 @@ html, body, .app {
   border: 10px solid #232323;
   background: #fff; 
   }
-  .cvl{
+  #cvl canvas{
   	width: 100px;
   	height: 100px;
+  	/* ドット絵表示 */
+  	image-rendering: -webkit-optimize-contrast;  /* Safari */
+  	image-rendering: -moz-crisp-edges;	  /* FireFox */
+  	image-rendering: pixelated;		
+  	position: absolute;		/* 位置固定 */
   }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  
