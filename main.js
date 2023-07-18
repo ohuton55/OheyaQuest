@@ -11,8 +11,9 @@ window.onload = function() {
 	// 初期化
 	const id = '#app';
 	// canvasArrを初期化する
+	console.log('Go initCanvasArr()');
 	gameData.canvasArr = GameCanvas.initCanvasArr(id, gameData);
-	
+	console.log(gameData.canvasArr[0].context);
 	//------------------------------------------------------------
 	console.log(Object.keys(gameData));
 	console.log(Object.keys(gameData.canvasArr[0]));
@@ -24,7 +25,8 @@ window.onload = function() {
 	var result2 = Boolean(document.addEventListener);
 	console.log(result2)
 
-
+	SceneTitle.start();
+	SceneTitle.anim(gameData);
 	
 //	document.addEventListener("touchstart", TouchEventFunc);
 //	document.addEventListener("touchmove", TouchEventFunc);
@@ -80,9 +82,6 @@ function testContext(e) {
 	UiText.setImage('black', GameImage.images['fontBlack']);
 	
 	
-	SceneTitle.start();
-	SceneTitle.anim(gameData);
-	
 //	const test = new GameData();
 //	console.log(test.w);	
 	
@@ -92,10 +91,6 @@ function testContext(e) {
 //	console.log(w)
 //	console.log(h)
 
-	UiText.drawCenter(ct, textArr[0], 100, 100, 28, 'white');
-	UiText.drawCenter(ct, textArr[1], 100, 200, 10, 'white');
-	UiText.drawCenter(ct, textArr[2], 120, 200, 10, 'white');
-	UiText.drawCenter(ct, textArr[3], 140, 200, 10, 'white');
 	UiText.draw(ct, 'onaka ippai!', 100, 220, 5, 'white');
 	UiText.drawFrame(ct, 'Frame test', 200, 100, 10, 'black', 1);
 	UiText.drawFrame(ct, 'Frame test', 200, 200, 10, 'white', 1);

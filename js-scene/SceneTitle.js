@@ -52,13 +52,22 @@ class SceneTitle {
 //	const context = gameData.canvasArr[layerId].context;
 	
 	
-	context.clearRect(0, 0, w, h);		// 描画領域をクリア
+//	context.clearRect(0, 0, w, h);		// 描画領域をクリア
 	
-	console.log('UiText');
-	//UiText.drawCenter( context, textArr[0], w2, h * 0.2, 28 'White');
+	console.log('UiText_');
+	//UiText.drawCenter( context, textArr[0], w2, h * 0.2, 28 'white');
+	console.log(gameData.canvasArr[0].context);
 	const context = gameData.canvasArr[0].context;
-	UiText.drawCenter( context, textArr[0], w2, h * 0.2, 28, 'White');
+	console.log(context);
+	//UiText.drawCenter( context, 'TEST!!!!', w2, h * 0.2, 28, 'white');
+
 	
+	const image = new Image();
+	image.src = 'image/test.png';
+	console.log(image);	
+	context.drawImage(image, 100, 100, 500, 500,  0, 0, 200, 200);
+	UiText.draw(context, 'onaka ippai!', 100, 220, 5, 'white');
+
 	console.log(w);
 	console.log(h);
 		

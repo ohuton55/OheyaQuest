@@ -2,15 +2,17 @@
 
 class GameCanvas {
 
-	static genCanvas(w, h) {
+	static genCanvas(element, w, h) {
 	
 		console.log('test"!"');
 		const canvas = document.createElement('canvas'); // 描画領域を定義する
+		element.appendChild(canvas);		// DOMに追加する
 		canvas.setAttribute('width', w);
 		canvas.setAttribute('height', h);	
 		const context = canvas.getContext('2d');  // 2Dコンテキストを描画領域に追加して、描画インターフェースを持たせる
 		context.imageSmoothingEnabled = false; // ドット絵用設定にする
 		
+		console.log('context returned');
 		// オブジェクトを戻り値とする
 		return {canvas: canvas, context: context, w: w, h: h};
 	}
@@ -24,10 +26,13 @@ class GameCanvas {
 		const canvasArr = [];	
 		const element = document.querySelector(selectorId); // 要素#appを取得
 
+		console.log(w);
+		console.log(h);
 		console.log(layerMax);
 		for (let i = 0; i < layerMax; i++) {
-			const c = this.genCanvas(w, h);	// レイヤー枚数分、キャンバスを生成する
-			
+			console.log('GO genCanvas');
+			const c = this.genCanvas(element, w, h);	// レイヤー枚数分、キャンバスを生成する
+			console.log(Object.keys(c));		
 			// 一番下は、背景色で塗りつぶす
 			if (i === 0) {
 				c.context.fillStyle = bg;
