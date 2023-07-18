@@ -5,7 +5,8 @@ window.onload = function() {
 	console.log('got it!');
 	const gameData  = new GameData();	// ゲーム データ
 	
-	
+	const test2 = new GameAnim();
+	console.log(Object.keys(test2));
 	//------------------------------------------------------------
 	// 初期化
 	const id = '#app';
@@ -23,8 +24,7 @@ window.onload = function() {
 	var result2 = Boolean(document.addEventListener);
 	console.log(result2)
 
-	SceneTitle.start();
-	SceneTitle.anim(gameData);
+
 	
 //	document.addEventListener("touchstart", TouchEventFunc);
 //	document.addEventListener("touchmove", TouchEventFunc);
@@ -80,6 +80,9 @@ function testContext(e) {
 	UiText.setImage('black', GameImage.images['fontBlack']);
 	
 	
+	SceneTitle.start();
+	SceneTitle.anim(gameData);
+	
 //	const test = new GameData();
 //	console.log(test.w);	
 	
@@ -88,13 +91,6 @@ function testContext(e) {
 	
 //	console.log(w)
 //	console.log(h)
-	
-	const textArr = [
-		'OheyaQuest',
-		'Please Click!',
-		'Created by Yuuka Kumai',
-		'Sound by Maoudamashii'
-		];
 
 	UiText.drawCenter(ct, textArr[0], 100, 100, 28, 'white');
 	UiText.drawCenter(ct, textArr[1], 100, 200, 10, 'white');
