@@ -4,16 +4,11 @@ class SceneTitle {
 
 	//------------------------------------------------------------
 	// start
-	static start() {
-
-		console.log("test");	
-		console.log(document.getElementById("myid"));
-		this.test();
+	static start(gameData) {
+		console.log("SceneTitle_start!");	
+		GameAnim.add(this.anim.bind(this, gameData));
 	}
 
-	static test() {
-		console.log(this);		
-	}	
 	//------------------------------------------------------------
 	// tap
 	static tap(){
@@ -23,7 +18,7 @@ class SceneTitle {
 	
 	//------------------------------------------------------------
 	// animation
-	static anim(gameData){
+	static anim(gameData, time){
 	
 	console.log("start SeceneTitle");	
 	const w = gameData.w;
@@ -45,32 +40,17 @@ class SceneTitle {
 	// time.sum...20 / 200 0.1 0.0.2
 	
 	console.log(textArr[0]);
-//	const isView = Math.floor(time.sum  / 200) % 5 >= 2; //  点滅表示用フラグ
+	const isView = Math.floor(time.sum  / 200) % 5 >= 2; //  点滅表示用フラグ
 	
 	// 描画準備
-//	const layerId = gameData.layerIds.middle;
-//	const context = gameData.canvasArr[layerId].context;
+	const layerId = gameData.layerIds.middle;
+	const context = gameData.canvasArr[layerId].context;
+	//context.clearRect(0, 0, w, h);		// 描画領域をクリア
 	
-	
-//	context.clearRect(0, 0, w, h);		// 描画領域をクリア
-	
-	console.log('UiText_');
-	//UiText.drawCenter( context, textArr[0], w2, h * 0.2, 28 'white');
-	console.log(gameData.canvasArr[0].context);
-	const context = gameData.canvasArr[0].context;
-	console.log(context);
-	//UiText.drawCenter( context, 'TEST!!!!', w2, h * 0.2, 28, 'white');
-
-	
-	const image = new Image();
-	image.src = 'image/test.png';
-	console.log(image);	
-	context.drawImage(image, 100, 100, 500, 500,  0, 0, 200, 200);
 	UiText.draw(context, 'onaka ippai!', 100, 220, 28, 'white');
-
-	console.log(w);
-	console.log(h);
-		
+	UiText.drawCenter( context, textArr[0], w2, h * 0.2, 28, 'white');	UiText.drawCenter( context, textArr[1], w2, h * 0.6, 10, 'white');	UiText.drawCenter( context, textArr[2], w2, h * 0.86, 10, 'white');
+	UiText.drawCenter( context, textArr[3], w2, h * 0.94, 10, 'white');
+	
 	
 	}
 

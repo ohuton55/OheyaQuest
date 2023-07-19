@@ -2,7 +2,7 @@
 
 window.onload = function() {
 	eruda.init();
-	console.log('got it!');
+
 	const gameData  = new GameData();	// ゲーム データ
 	
 	const test2 = new GameAnim();
@@ -11,20 +11,11 @@ window.onload = function() {
 	// 初期化
 	const id = '#app';
 	// canvasArrを初期化する
-	console.log('Go initCanvasArr()');
 	gameData.canvasArr = GameCanvas.initCanvasArr(id, gameData);
 	console.log(gameData.canvasArr[0].context);
 	//------------------------------------------------------------
 	console.log(Object.keys(gameData));
 	console.log(Object.keys(gameData.canvasArr[0]));
-	console.log(gameData.canvasArr[2].context.imageSmoothingEnabled);
-			
-	var result = Boolean( window.TouchEvent );
-	console.log(result);
-	
-	var result2 = Boolean(document.addEventListener);
-	console.log(result2)
-
 	//------------------------------------------------------------
 	// リソース読み込み
 	const promiseArr = [];
@@ -32,20 +23,21 @@ window.onload = function() {
 	// 画像
 	promiseArr.push(GameImage.load('fontBlack', 'image/fontBlack.png'));
 	promiseArr.push(GameImage.load('fontWhite', 'image/fontWhite.png'));
-	console.log('promise is...');
 	
 	Promise.all(promiseArr).then(arg => {
 		UiText.setImage('black', GameImage.images['fontBlack']);
 		UiText.setImage('white', GameImage.images['fontWhite']);
 		console.log('promiseall_ok!');
-		SceneTitle.start();
-		console.log(GameImage.images['fontBlack']);
-		console.log(GameImage.images['fontWhite']);
-		SceneTitle.anim(gameData);
+		
+		// ゲーム開始
+		SceneTitle.start(gameData);  	// タイトル開始
+		GameAnim.start();	// アニメーション開始
 	});
 	
 	document.getElementById("text-button").addEventListener("touchstart", TouchTextButton);
 	document.getElementById("text-button").addEventListener("touchmove", testContext);
+	
+
 	//------------------------------------------------------------
 
 
@@ -98,12 +90,10 @@ function testContext(e) {
 	image.style.imageRendering = 'pixelated';
 	ct.drawImage(image, 0 + x / 5 , 0 + y / 5, 500, 500,  100,  100, 200, 200);
 	
-	GameImage.load('fontWhite', 'image/fontWhite.png');
-	UiText.setImage('white', GameImage.images['fontWhite']);
-	GameImage.load('fontBlack', 'image/fontBlack.png');
-	UiText.setImage('black', GameImage.images['fontBlack']);
-	
-	
+	console.log('querySelector...');
+	const box = document.querySelector(".myid");
+	const moveX = 0;
+	console.log(box);
 //	const test = new GameData();
 //	console.log(test.w);	
 	
