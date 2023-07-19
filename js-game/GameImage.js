@@ -6,11 +6,14 @@
 	
 		// 読み込み
 		static load(id, url) {
-			const image = this.images[id] = new Image();
-			image.src = url;
-			 /* ドット絵表示 */
-  			image.style.imageRendering = '-webkit-optimize-contrast';  /* Safari */
-  			image.style.imageRendering = '-moz-crisp-edges';	  /* FireFox */
-			image.style.imageRendering = 'pixelated';
+			
+			// プロミスオブジェクトを戻す
+			return  new Promise((resolve, reject) => {
+				const image = this.images[id] = new Image();
+				// 画像が読み込まれたら、resolveを実行
+				image.onload = () => resolve('load image:' +	 id); 
+				image.onerror = reject;
+				image.src = url;	// URLを指定する
+			});
 		}
 	}

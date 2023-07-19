@@ -66,7 +66,7 @@ class SceneTitle {
 	image.src = 'image/test.png';
 	console.log(image);	
 	context.drawImage(image, 100, 100, 500, 500,  0, 0, 200, 200);
-	UiText.draw(context, 'onaka ippai!', 100, 220, 5, 'white');
+	UiText.draw(context, 'onaka ippai!', 100, 220, 28, 'white');
 
 	console.log(w);
 	console.log(h);

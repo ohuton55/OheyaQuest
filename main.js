@@ -25,14 +25,36 @@ window.onload = function() {
 	var result2 = Boolean(document.addEventListener);
 	console.log(result2)
 
-	SceneTitle.start();
-	SceneTitle.anim(gameData);
+	//------------------------------------------------------------
+	// リソース読み込み
+	const promiseArr = [];
+	
+	// 画像
+	promiseArr.push(GameImage.load('fontBlack', 'image/fontBlack.png'));
+	promiseArr.push(GameImage.load('fontWhite', 'image/fontWhite.png'));
+	console.log('promise is...');
+	
+	Promise.all(promiseArr).then(arg => {
+		UiText.setImage('black', GameImage.images['fontBlack']);
+		UiText.setImage('white', GameImage.images['fontWhite']);
+		console.log('promiseall_ok!');
+		SceneTitle.start();
+		console.log(GameImage.images['fontBlack']);
+		console.log(GameImage.images['fontWhite']);
+		SceneTitle.anim(gameData);
+	});
+	
+	document.getElementById("text-button").addEventListener("touchstart", TouchTextButton);
+	document.getElementById("text-button").addEventListener("touchmove", testContext);
+	//------------------------------------------------------------
+
+
 	
 //	document.addEventListener("touchstart", TouchEventFunc);
 //	document.addEventListener("touchmove", TouchEventFunc);
 //	document.addEventListener("touchend", TouchEventFunc);
-	document.getElementById("text-button").addEventListener("touchstart", TouchTextButton);
-	document.getElementById("text-button").addEventListener("touchmove", testContext);
+
+
 //	document.getElementById("text-button").addEventListener("touchend", TouchEventFunc);
 };
 
