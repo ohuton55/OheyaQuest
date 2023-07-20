@@ -6,7 +6,14 @@ class SceneTitle {
 	// start
 	static start(gameData) {
 		console.log("SceneTitle_start!");	
-		GameAnim.add(this.anim.bind(gameData));
+		console.log(this.anim);
+		console.log(gameData.layerIds.middle);
+		//GameAnim.add(this.anim.bind(this, gameData));
+		//GameAnim.add(this.anim(this, gameData));
+		//GameAnim.add(this.anim(gameData));
+		GameAnim.add(this.anim.bind(this, gameData));
+		console.log(this);
+
 		console.log("SceneTitle_end");
 	}
 
@@ -20,7 +27,7 @@ class SceneTitle {
 	//------------------------------------------------------------
 	// animation
 	static anim(gameData, time){
-	
+	console.log(time.sum);
 	console.log("start SeceneTitle");	
 	const w = gameData.w;
 	const h = gameData.h;
@@ -40,17 +47,19 @@ class SceneTitle {
 
 	console.log('start__isView');	
 	const isView = Math.floor(time.sum  / 200) % 5 >= 2; //  点滅表示用フラグ
-	console.log('end__isView');
+	console.log(isView);
 	
 	// 描画準備
 	const layerId = gameData.layerIds.middle;
 	const context = gameData.canvasArr[layerId].context;
-	//context.clearRect(0, 0, w, h);		// 描画領域をクリア
+	context.clearRect(0, 0, w, h);		// 描画領域をクリア
 	
 	UiText.draw(context, 'onaka ippai!', 100, 220, 28, 'white');
+	UiText.drawCenter( context, textArr[0], w2, h * 0.2, 28, 'white');
 	if (isView) {
-		UiText.drawCenter( context, textArr[0], w2, h * 0.2, 28, 'white');	}
-	UiText.drawCenter( context, textArr[1], w2, h * 0.6, 10, 'white');	UiText.drawCenter( context, textArr[2], w2, h * 0.86, 10, 'white');
+		UiText.drawCenter( context, textArr[1], w2, h * 0.6, 10, 'white');
+	}
+	UiText.drawCenter( context, textArr[2], w2, h * 0.86, 10, 'white');
 	UiText.drawCenter( context, textArr[3], w2, h * 0.94, 10, 'white');
 	
 	

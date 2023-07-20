@@ -32,6 +32,7 @@ class GameAnim {
 		this.time.old = + new Date();		// 旧 初期化
 		console.log('Game.anim.start()_time.old is');
 		console.log(this.time.old);
+		console.log('time.diff___is...');
 		console.log(this.time.diff);
 		// アニメーションループ（再帰）
 		const anmFnc = () => {
@@ -51,7 +52,7 @@ class GameAnim {
 
  		// 差分時間と経過時間を計算
  		const time = this.time;
- 		time.now +=  new Date();
+ 		time.now = + new Date();
 
  		// 1秒以上遅延があったら、いったん差分を0にできるらしい
  		if (time.old == null || time.now - time.old >= 1000){
@@ -61,29 +62,28 @@ class GameAnim {
  		
  		console.log('not diff is _____ 0');
  		// time.oldがnullだったら0 そうでなければ差分をdiffに代入
- 		//time.diff = time.old == null ? 0 : time.now - time.old;
- 		if (time.old == null) {
- 			time.diff = 0;
- 		} else {
- 			time.diff = time.now - time.old;
- 		}
+ 			time.diff = time.old == null ? 0 : time.now - time.old;
+
  		console.log('time.diff___is');
  		console.log(time.diff);
- 		
  		
  		time.sum += time.diff;
  		time.old = time.now;
  		
  		// 更新実行関数をスタート
- 		if (typeof this.funcUpdte === 'function') {
+ 		if (typeof this.funcUpdate === 'function') {
+  			console.log('start__funcUpdate');
+ 			console.log(this.time);
+ 			console.log(this.funcUpdate);
  			this.funcUpdate(this.time);
- 			console.log('start__funcUpdate');
  		}
  	};	//------------------------------------------------------------
 	// 更新実行関数を設定
 	static add(func) {
 		this.funcUpdate = func;
 		console.log('start__GameAnim.add');
+		console.log(typeof  func);
+		console.log(this.funcUpdate);
 	};
 
 }
