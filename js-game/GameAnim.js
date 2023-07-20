@@ -4,8 +4,15 @@ class GameAnim {
 	//------------------------------------------------------------
 	// アニメーション実行用関数（ブラウザ依存を吸収）
 	static requestAnim(cb) {
-		return ('HEY!');
-		
+		return(
+			window.requestAnimationFrame		       ||
+			window.webkitRequestAnimationFrame  ||
+			window.mozRequestAnimationFrame     ||
+			window.oRequestAnimationFrame	       ||
+			window.msRequestAnimationFrame  ||
+			(cb => window.setTimeout(cb, 1000 / 60))
+		)(cb); 	
+		// どのブラウザにも該当しない場合、およそ60FPSくらいで描画
 	};
 	//------------------------------------------------------------
 	// アニメーション用変数
@@ -20,31 +27,50 @@ class GameAnim {
 	//------------------------------------------------------------
 	// アニメーションの開始
 	static start() {
+		console.log(this.funcUpdate);
 		this.flagStop = false;
 		this.time.old = + new Date();		// 旧 初期化
+		console.log('Game.anim.start()_time.old is');
 		console.log(this.time.old);
 		
 		// アニメーションループ（再帰）
 		const anmFnc = () => {
 			this.update();
-			//if(! this.flagStop) { this.requestAnim(anmFnc) }	// 再描画して実行
+			if(! this.flagStop) { this.requestAnim(anmFnc) }	// 再描画して実行
 		};
 		anmFnc();	// 初回実行
 		console.log(this.time.sum);
 	};
  	//------------------------------------------------------------
- 	
+ 	// アニメーションの停止
+ 	static stop() {
+ 		this.flagStop = true;
+ 	}
  	//------------------------------------------------------------
  	// アニメーションの更新
  	static update() {
  		// 差分時間と経過時間を計算
  		const time = this.time;
- 		console.log(time);
  		time.now +=  new Date();
+ 		// 1秒以上遅延があったら、いったん差分を0にできるらしい
+ 		if (time.old == null || time.now - time.old >= 1000){
+ 			time.old = time.now;
+ 		}
+ 		// time.oldがnullだったら0 そうでなければ差分をdiffに代入
+ 		time.diff = time.old == null ? 0 : time.now - time.old;
+ 		time.sum += time.diff;
+ 		time.old = time.now;
+ 		
+ 		// 更新実行関数をスタート
+ 		if (typeof this.funcUpdte === 'function') {
+ 			this.funcUpdate(this.time);
+ 			console.log('start__funcUpdate');
+ 		}
  	};	//------------------------------------------------------------
 	// 更新実行関数を設定
 	static add(func) {
 		this.funcUpdate = func;
+		console.log('start__GameAnim.add');
 	};
 
 }

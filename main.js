@@ -32,6 +32,18 @@ window.onload = function() {
 		// ゲーム開始
 		SceneTitle.start(gameData);  	// タイトル開始
 		GameAnim.start();	// アニメーション開始
+
+		const box = document.querySelector("#myid");
+		let moveX = 0;
+		
+		const moveAnim = () => {
+			if (moveX <= 400) {
+				moveX++;
+				box.style.transform = `translateX(${moveX}px)`;
+				requestAnimationFrame(moveAnim);
+			}		
+		};
+		moveAnim();
 	});
 	
 	document.getElementById("text-button").addEventListener("touchstart", TouchTextButton);
@@ -90,10 +102,6 @@ function testContext(e) {
 	image.style.imageRendering = 'pixelated';
 	ct.drawImage(image, 0 + x / 5 , 0 + y / 5, 500, 500,  100,  100, 200, 200);
 	
-	console.log('querySelector...');
-	const box = document.querySelector(".myid");
-	const moveX = 0;
-	console.log(box);
 //	const test = new GameData();
 //	console.log(test.w);	
 	

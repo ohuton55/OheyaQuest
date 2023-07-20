@@ -6,7 +6,8 @@ class SceneTitle {
 	// start
 	static start(gameData) {
 		console.log("SceneTitle_start!");	
-		GameAnim.add(this.anim.bind(this, gameData));
+		GameAnim.add(this.anim.bind(gameData));
+		console.log("SceneTitle_end");
 	}
 
 	//------------------------------------------------------------
@@ -33,13 +34,11 @@ class SceneTitle {
 		'Sound by Maoudmashii'
 	];
 	const test2 = new GameAnim();
-	console.log(Object.keys(test2));
 	
 	// Math() 与えられた数値以下の最大の整数
 	// time.sum ... GameAnimが持つオブジェクト　bind()で紐づけて渡す？
 	// time.sum...20 / 200 0.1 0.0.2
 	
-	console.log(textArr[0]);
 	const isView = Math.floor(time.sum  / 200) % 5 >= 2; //  点滅表示用フラグ
 	
 	// 描画準備
@@ -48,7 +47,9 @@ class SceneTitle {
 	//context.clearRect(0, 0, w, h);		// 描画領域をクリア
 	
 	UiText.draw(context, 'onaka ippai!', 100, 220, 28, 'white');
-	UiText.drawCenter( context, textArr[0], w2, h * 0.2, 28, 'white');	UiText.drawCenter( context, textArr[1], w2, h * 0.6, 10, 'white');	UiText.drawCenter( context, textArr[2], w2, h * 0.86, 10, 'white');
+	if (isView) {
+		UiText.drawCenter( context, textArr[0], w2, h * 0.2, 28, 'white');	}
+	UiText.drawCenter( context, textArr[1], w2, h * 0.6, 10, 'white');	UiText.drawCenter( context, textArr[2], w2, h * 0.86, 10, 'white');
 	UiText.drawCenter( context, textArr[3], w2, h * 0.94, 10, 'white');
 	
 	
