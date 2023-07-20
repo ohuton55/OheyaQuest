@@ -37,9 +37,10 @@ class SceneTitle {
 	
 	// Math() 与えられた数値以下の最大の整数
 	// time.sum ... GameAnimが持つオブジェクト　bind()で紐づけて渡す？
-	// time.sum...20 / 200 0.1 0.0.2
-	
+
+	console.log('start__isView');	
 	const isView = Math.floor(time.sum  / 200) % 5 >= 2; //  点滅表示用フラグ
+	console.log('end__isView');
 	
 	// 描画準備
 	const layerId = gameData.layerIds.middle;

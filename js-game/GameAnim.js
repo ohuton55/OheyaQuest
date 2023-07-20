@@ -32,14 +32,13 @@ class GameAnim {
 		this.time.old = + new Date();		// 旧 初期化
 		console.log('Game.anim.start()_time.old is');
 		console.log(this.time.old);
-		
+		console.log(this.time.diff);
 		// アニメーションループ（再帰）
 		const anmFnc = () => {
 			this.update();
 			if(! this.flagStop) { this.requestAnim(anmFnc) }	// 再描画して実行
 		};
 		anmFnc();	// 初回実行
-		console.log(this.time.sum);
 	};
  	//------------------------------------------------------------
  	// アニメーションの停止
@@ -49,15 +48,29 @@ class GameAnim {
  	//------------------------------------------------------------
  	// アニメーションの更新
  	static update() {
+
  		// 差分時間と経過時間を計算
  		const time = this.time;
  		time.now +=  new Date();
+
  		// 1秒以上遅延があったら、いったん差分を0にできるらしい
  		if (time.old == null || time.now - time.old >= 1000){
  			time.old = time.now;
+ 			console.log('diff !!');
  		}
+ 		
+ 		console.log('not diff is _____ 0');
  		// time.oldがnullだったら0 そうでなければ差分をdiffに代入
- 		time.diff = time.old == null ? 0 : time.now - time.old;
+ 		//time.diff = time.old == null ? 0 : time.now - time.old;
+ 		if (time.old == null) {
+ 			time.diff = 0;
+ 		} else {
+ 			time.diff = time.now - time.old;
+ 		}
+ 		console.log('time.diff___is');
+ 		console.log(time.diff);
+ 		
+ 		
  		time.sum += time.diff;
  		time.old = time.now;
  		
