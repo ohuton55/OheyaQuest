@@ -66,11 +66,11 @@ class SceneTitle {
 		console.log(charaImage);
 		UiChip.draw(
 			context, charaImage, chipSize, charaSize,  // 基本情報
-			0, 0, chipSize * 1.5, charaY	// 座標情報
+			0, 0, chipSize * 2, charaY	// 座標情報
 		);
 		UiChip.draw(
 			context, charaImage, chipSize, charaSize,
-			3, 1, w - chipSize * 10, charaY	
+			3, 1, w - chipSize * 9, charaY	
 		);
 	}
 

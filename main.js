@@ -21,6 +21,7 @@ window.onload = function() {
 	const promiseArr = [];
 	
 	// 画像
+	promiseArr.push(GameImage.load('chara', 	   'image/chara.png'));
 	promiseArr.push(GameImage.load('fontBlack', 'image/fontBlack.png'));
 	promiseArr.push(GameImage.load('fontWhite', 'image/fontWhite.png'));
 	
@@ -32,18 +33,6 @@ window.onload = function() {
 		// ゲーム開始
 		SceneTitle.start(gameData);  	// タイトル開始
 		GameAnim.start();	// アニメーション開始
-
-		const box = document.querySelector("#myid");
-		let moveX = 0;
-		
-		const moveAnim = () => {
-			if (moveX <= 400) {
-				moveX++;
-				box.style.transform = `translateX(${moveX}px)`;
-				requestAnimationFrame(moveAnim);
-			}		
-		};
-		moveAnim();
 	});
 	
 	document.getElementById("text-button").addEventListener("touchstart", TouchTextButton);
