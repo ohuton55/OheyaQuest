@@ -27,8 +27,6 @@ class SceneTitle {
 	//------------------------------------------------------------
 	// animation
 	static anim(gameData, time){
-		console.log(time.sum);
-		console.log("start SeceneTitle");	
 		const w = gameData.w;
 		const h = gameData.h;
 		const chipSize = gameData.chipSize;
@@ -44,7 +42,6 @@ class SceneTitle {
 		// Math() 与えられた数値以下の最大の整数
 		// time.sum ... GameAnimが持つオブジェクト　bind()で紐づけて渡す？
 		const isView = Math.floor(time.sum  / 200) % 5 >= 2; //  点滅表示用フラグ
-		console.log(isView);
 	
 		// 描画準備
 		const layerId = gameData.layerIds.middle;
@@ -63,7 +60,6 @@ class SceneTitle {
 		const charaY = chipSize * 6.5;	//Y 位置
 		const charaSize = chipSize * 7;
 	
-		console.log(charaImage);
 		UiChip.draw(
 			context, charaImage, chipSize, charaSize,  // 基本情報
 			0, 0, chipSize * 2, charaY	// 座標情報

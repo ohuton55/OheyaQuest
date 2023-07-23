@@ -57,24 +57,16 @@ class GameAnim {
  		// 1秒以上遅延があったら、いったん差分を0にできるらしい
  		if (time.old == null || time.now - time.old >= 1000){
  			time.old = time.now;
- 			console.log('diff !!');
  		}
  		
- 		console.log('not diff is _____ 0');
  		// time.oldがnullだったら0 そうでなければ差分をdiffに代入
- 			time.diff = time.old == null ? 0 : time.now - time.old;
-
- 		console.log('time.diff___is');
- 		console.log(time.diff);
+ 		time.diff = time.old == null ? 0 : time.now - time.old;
  		
  		time.sum += time.diff;
  		time.old = time.now;
  		
  		// 更新実行関数をスタート
  		if (typeof this.funcUpdate === 'function') {
-  			console.log('start__funcUpdate');
- 			console.log(this.time);
- 			console.log(this.funcUpdate);
  			this.funcUpdate(this.time);
  		}
  	};	//------------------------------------------------------------

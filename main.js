@@ -37,7 +37,7 @@ window.onload = function() {
 	
 	document.getElementById("text-button").addEventListener("touchstart", TouchTextButton);
 	document.getElementById("text-button").addEventListener("touchmove", testContext);
-	
+	GameView.init('#app', gameData);
 
 	//------------------------------------------------------------
 
