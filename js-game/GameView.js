@@ -13,40 +13,69 @@ class GameView {
 		this.w = w;
 		this.h = h;
 		this.element = document.querySelector(selectorId); // 要素を選択
-		console.log('start___GameView_init()');
-
-		this.initTap();	// タップの初期化
+		
+		this.initTap();
+		this.autoResize();
 	};
 	//------------------------------------------------------------
-	// タップの初期化
+	// 画面サイズの自動変更
+	static autoResize() {
+		const funcResize = () => {
+			this.calcRect();	// 対象矩形の計算
+		};
+		funcResize();
+	};
+	//------------------------------------------------------------
+	// 対象矩形の計算
+	static calcRect() {
+		console.log('start__calcRect()');
+		// ウィンドウサイズ
+		const winW = window.innerWidth;
+		const winH = window.innerHeight;
+		
+		// アプリ短形の計算
+		this.rect.w = Math.min(winW, winH * this.w / this.h) | 0;
+		console.log(winH * this.w / this.h);
+		console.log(winW);
+		console.log(this.rect.w);
+		this.rect.h = Math.min(winH, winW * this.h / this.w) | 0;
+		this.rect.x = (winW - this.rect.w) / 2 | 0;
+		this.rect.y = (winH - this.rect.h) / 2 | 0;
+		console.log(this.rect.x);
+		console.log(this.rect.y);
+	};
+	//------------------------------------------------------------
 	static initTap() {
-		// 使用イベント
+		console.log('GameView_initTap()');
+			// 使用イベント
 		const events = {
 			// マウス系
-			mousedown:	'down',
-			mouseup:		'up',
-			mousemove:	'move',
-			mouseenter:	'enter',
-			mouseleave:	'up',
+			mousedown:   'down',	// 押下
+			mouseup:     'up',		// 解放
+			mousemove:   'move',	// 移動
+			mouseenter:  'enter',	// 侵入
+			mouseleave:  'up',  	// 離脱
 			// タッチ系
-			touchstart:		'down',
-			touchend:		'up',
-			touchmove:		'move'
-			touchcancel:	'up'
+			touchstart:  'down',	// 押下
+			touchend:    'up',		// 解放
+			touchmove:   'move',	// 移動
+			touchcancel: 'up'   	// 離脱
 		};
-	
-		// イベント処理関数
-		//const fnc = type => {
-		//	return e => {
-				// クライアント位置取得（モバイルではタッチを利用）
-				//const eX = ;
-		//		console.log(e.changedTouches);
-		//	}	
-		//};
 		
-		// イベントの登録
-		//const type = events['touchstart'];
-		//this.element.addEventListener('touchstart', fnc(type));
+		const fnc = type => {
+			return e => {
+				// クライアント位置取得（モバイルではタッチを利用			
+				const eX = (e.changedTouches ? e.changedTouches[0] : e).clientX;
+				const eY = (e.changedTouches ? e.changedTouches[0] : e).clientY;
+				// イベント位置の計算（相対サイズからゲーム内位置を求める）
+				console.log(eX);
+				console.log(eY);
+				console.log(type);
+			}
+		}
+		
+		this.element.addEventListener('touchstart', fnc('touchstart'));
+		console.log(events['touchstart']);
 	};
 }
 

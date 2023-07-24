@@ -4,18 +4,13 @@ window.onload = function() {
 	eruda.init();
 
 	const gameData  = new GameData();	// ゲーム データ
-	
-	const test2 = new GameAnim();
-	console.log(Object.keys(test2));
+
 	//------------------------------------------------------------
 	// 初期化
 	const id = '#app';
 	// canvasArrを初期化する
 	gameData.canvasArr = GameCanvas.initCanvasArr(id, gameData);
-	console.log(gameData.canvasArr[0].context);
-	//------------------------------------------------------------
-	console.log(Object.keys(gameData));
-	console.log(Object.keys(gameData.canvasArr[0]));
+	GameView.init(id, gameData);	// 表示の初期化	
 	//------------------------------------------------------------
 	// リソース読み込み
 	const promiseArr = [];
@@ -37,8 +32,6 @@ window.onload = function() {
 	
 	document.getElementById("text-button").addEventListener("touchstart", TouchTextButton);
 	document.getElementById("text-button").addEventListener("touchmove", testContext);
-	GameView.init('#app', gameData);
-
 	//------------------------------------------------------------
 
 
