@@ -4,8 +4,8 @@ class GameData {
 
 	constructor() {
 		// 描画用設定
-		this.w = 700;
-		this.h = 525;
+		this.w = 320;
+		this.h = 240;
 		this.bg = '#000';
 		
 		this.layerMax = 3;

@@ -24,7 +24,16 @@ class GameView {
 			this.calcRect();	// 対象矩形の計算
 			this.fitCanvas();	// 全キャンバスを画面にフィット
 		};
-		funcResize();
+		funcResize();	// 初回実行
+		
+		// 遅延つき実行（短時間の連続実行を避けるため）
+		let timerId = null;	// 連続実行用のタイマーID
+		window.addEventListener('resize', function(e) {
+			if (timerId !== null) {
+				clearTimeout(timerId)	// 遅延中なら処理を削除
+			}
+			timerId = setTimeout(funcResize, 1000);  // 遅延付き実行
+		});
 	};
 	//------------------------------------------------------------
 	// 対象矩形の計算
@@ -51,6 +60,7 @@ class GameView {
 		});
 	}	
 	//------------------------------------------------------------
+	// タップの初期化
 	static initTap() {
 		console.log('GameView_initTap()');
 			// 使用イベント
@@ -68,20 +78,39 @@ class GameView {
 			touchcancel: 'up'   	// 離脱
 		};
 		
+		// イベント処理関数
 		const fnc = type => {
 			return e => {
 				// クライアント位置取得（モバイルではタッチを利用			
 				const eX = (e.changedTouches ? e.changedTouches[0] : e).clientX;
 				const eY = (e.changedTouches ? e.changedTouches[0] : e).clientY;
 				// イベント位置の計算（相対サイズからゲーム内位置を求める）
-				console.log(eX);
-				console.log(eY);
-				console.log(type);
+				const x = ((eX - this.rect.x) * this.w / this.rect.w) | 0;
+				const y = ((eY - this.rect.y) * this.h / this.rect.h) | 0;
+				
+				// 画面範囲外にタップされた時は、何も返さない
+				if (x < 0 || this.w <= x
+				 || y < 0 || this.h <= y) {
+				 	return;
+				 }
+				
+				// 実行（XY位置とイベント種類を渡す）
+				if (typeof this.funcTap === 'function') {
+					this.funcTap(x, y, type);
+				}
 			}
 		}
 		
-		this.element.addEventListener('touchstart', fnc('touchstart'));
-		console.log(events['touchstart']);
+		// イベントの登録
+		Object.keys(events).forEach(x => {
+			const type = events[x];
+			this.element.addEventListener(x, fnc(type));
+		});
+	};
+	
+	// タップ時に実行する関数を追加
+	static add(func) {
+		this.funcTap = func;
 	};
 }
 
