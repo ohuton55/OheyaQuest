@@ -22,6 +22,7 @@ class GameView {
 	static autoResize() {
 		const funcResize = () => {
 			this.calcRect();	// 対象矩形の計算
+			this.fitCanvas();	// 全キャンバスを画面にフィット
 		};
 		funcResize();
 	};
@@ -44,6 +45,16 @@ class GameView {
 		console.log(this.rect.x);
 		console.log(this.rect.y);
 	};
+	//------------------------------------------------------------
+	// 全キャンバスを画面にフィット
+	static fitCanvas() {
+		this.element.querySelectorAll('canvas').forEach(o => {
+			o.style.left = `${this.rect.x}px`;
+			o.style.top = `${this.rect.y}px`;
+			o.style.width = `${this.rect.w}px`;
+			o.style.height = `${this.rect.h}px`;
+		});
+	}	
 	//------------------------------------------------------------
 	static initTap() {
 		console.log('GameView_initTap()');
