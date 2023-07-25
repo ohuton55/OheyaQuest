@@ -32,16 +32,6 @@ window.onload = function() {
 	
 	document.getElementById("text-button").addEventListener("touchstart", TouchTextButton);
 	document.getElementById("text-button").addEventListener("touchmove", testContext);
-	//------------------------------------------------------------
-
-
-	
-//	document.addEventListener("touchstart", TouchEventFunc);
-//	document.addEventListener("touchmove", TouchEventFunc);
-//	document.addEventListener("touchend", TouchEventFunc);
-
-
-//	document.getElementById("text-button").addEventListener("touchend", TouchEventFunc);
 };
 
 function TouchEventFunc(e) {
@@ -83,30 +73,10 @@ function testContext(e) {
 	image.style.imageRendering = '-moz-crisp-edges';
 	image.style.imageRendering = 'pixelated';
 	ct.drawImage(image, 0 + x / 5 , 0 + y / 5, 500, 500,  100,  100, 200, 200);
-	
-//	const test = new GameData();
-//	console.log(test.w);	
-	
-//	const w = gameData.w;
-//	const h = gameData.h;
-	
-//	console.log(w)
-//	console.log(h)
 
 	UiText.draw(ct, 'onaka ippai!', 100, 220, 5, 'white');
 	UiText.drawFrame(ct, 'Frame test', 200, 100, 10, 'black', 1);
 	UiText.drawFrame(ct, 'Frame test', 200, 200, 10, 'white', 1);
-	//UiText.testFrame(ct, 'Frame TEST', 200, 100, 5, 'black', 1);
-	//UiText.testFrame(ct, 'Frame TEST', 200, 100, 5, 'white', 1);
-	
-//	const fontH = 10;
-//	const text = 'TEST';
-//	for (let i = 0; i < text.length; i++) {
-//		const refY = text.charCodeAt(i) * fontH;	// Y参照位置
-//		ct.drawImage(image, 0, refY, 5, 10, 100 + i * 28, 50, 28, 55
-//		);
-//	}
-//	document.body.appendChild(image);
 }		
 
 // 指定セレクタのCSSルールを取得する

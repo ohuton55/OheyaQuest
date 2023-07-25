@@ -6,13 +6,9 @@ class SceneTitle {
 	// start
 	static start(gameData) {
 		console.log("SceneTitle_start!");	
-		console.log(this.anim);
-		console.log(gameData.layerIds.middle);
-		//GameAnim.add(this.anim.bind(this, gameData));
-		//GameAnim.add(this.anim(this, gameData));
-		//GameAnim.add(this.anim(gameData));
+
 		GameAnim.add(this.anim.bind(this, gameData));
-		console.log(this);
+		GameView.init('#app', gameData);
 
 		console.log("SceneTitle_end");
 	}

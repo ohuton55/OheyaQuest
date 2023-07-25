@@ -33,17 +33,12 @@ class GameView {
 		// ウィンドウサイズ
 		const winW = window.innerWidth;
 		const winH = window.innerHeight;
-		
+
 		// アプリ短形の計算
 		this.rect.w = Math.min(winW, winH * this.w / this.h) | 0;
-		console.log(winH * this.w / this.h);
-		console.log(winW);
-		console.log(this.rect.w);
 		this.rect.h = Math.min(winH, winW * this.h / this.w) | 0;
 		this.rect.x = (winW - this.rect.w) / 2 | 0;
 		this.rect.y = (winH - this.rect.h) / 2 | 0;
-		console.log(this.rect.x);
-		console.log(this.rect.y);
 	};
 	//------------------------------------------------------------
 	// 全キャンバスを画面にフィット
