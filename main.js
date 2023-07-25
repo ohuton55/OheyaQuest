@@ -3,7 +3,10 @@
 window.onload = function() {
 	eruda.init();
 
+	// インスタンス作成
 	const gameData  = new GameData();	// ゲーム データ
+	const userData = new UserData();		// ユーザーデータ
+	userData.setStart(gameData);	// 開始時点データにする
 
 	//------------------------------------------------------------
 	// 初期化
