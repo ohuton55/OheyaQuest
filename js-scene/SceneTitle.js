@@ -4,21 +4,26 @@ class SceneTitle {
 
 	//------------------------------------------------------------
 	// start
-	static start(gameData) {
+	static start(gameData, userData) {
 		console.log("SceneTitle_start!");	
-		GameView.add(this.tap.bind(this, gameData));	// タップの登録
+		GameView.add(this.tap.bind(this, gameData, userData));	// タップの登録
 		GameAnim.add(this.anim.bind(this, gameData));	// アニメの登録
 		GameView.init('#app', gameData);
 	}
 
 	//------------------------------------------------------------
 	// tap
-	static tap(gameData, x, y, type){
+	static tap(gameData, userData, x, y, type){
 		if (type === 'down') {
-			console.log('tap!!!!');
+		
 			// 保存データの復帰
 			// 地図関連を初期化
+			console.log(userData.seed);
+			const result = UtilMap.gen(gameData, userData.seed);
+			userData.mapArr = result.mapArr;	// ランダム後マップ
+			
 			// シーン移動
+			SceneMap.start(gameData, userData);
 		}
 	}
 	
@@ -33,7 +38,7 @@ class SceneTitle {
 		const textArr = [
 			'Ohuton Quest',
 			'Please Click!',
-			'Created by Yuuka Kumai',
+			'Created by Harusame Udon',
 			'Sound by Maoudamashii'
 		];
 		

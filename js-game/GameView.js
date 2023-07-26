@@ -32,13 +32,13 @@ class GameView {
 			if (timerId !== null) {
 				clearTimeout(timerId)	// 遅延中なら処理を削除
 			}
-			timerId = setTimeout(funcResize, 1000);  // 遅延付き実行
+			timerId = setTimeout(funcResize, 50);  // 遅延付き実行
 		});
 	};
 	//------------------------------------------------------------
 	// 対象矩形の計算
 	static calcRect() {
-		console.log('start__calcRect()');
+
 		// ウィンドウサイズ
 		const winW = window.innerWidth;
 		const winH = window.innerHeight;
@@ -62,7 +62,7 @@ class GameView {
 	//------------------------------------------------------------
 	// タップの初期化
 	static initTap() {
-		console.log('GameView_initTap()');
+
 			// 使用イベント
 		const events = {
 			// マウス系
