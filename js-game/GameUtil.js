@@ -21,18 +21,10 @@ class GameUtil {
 		
 		// 呼び出すごとにランダムシャッフル
 		this.random = () => {
-			const t = x ^ (x << 11);
-			console.log (t);
-			x = y; y = z; z = w;
-			console.log(x);
-			console.log(y);
-			console.log(w);
-			console.log(t>>8);
-			console.log(t^(t>>8));
-			console.log(w>>19);
-			console.log(w^(w>>19));
-			console.log((w^(w>>19))^(t^(t>>8)));
-			console.log('-------------');
+			const t = x ^ (x << 11);	// 11bit分左シフトして、排他的論理和
+			x = y; y = z; z = w;	// 移す
+			// wを19bit分みぎシフトして、排他的論理和			// tを8bit分みぎシフトして、排他的論理和
+			// さらにXOR
 			return w =  (w^(w>>19))^(t^(t>>8));
 		}
 	};
