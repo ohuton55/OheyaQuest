@@ -17,10 +17,12 @@ class SceneTitle {
 		if (type === 'down') {
 		
 			// 保存データの復帰
+			
 			// 地図関連を初期化
-			console.log(userData.seed);
 			const result = UtilMap.gen(gameData, userData.seed);
 			userData.mapArr = result.mapArr;	// ランダム後マップ
+			//userData.townArr = result.townArr;	// 街
+			userData.moveCount = 0;	// マップ表示直後の戦闘を避ける
 			
 			// シーン移動
 			SceneMap.start(gameData, userData);
