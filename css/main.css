@@ -3,6 +3,8 @@
 	/* タップハイライト無効 */
 	-webkit-touch-callout: none;
 	/* 長押しメニュー禁止 */
+	-webkit-user-select: none;
+	/* 長押し選択ボックス無効化 */
 }
 html, body, .app {
 	width: 100%;	/* 横幅100％ */

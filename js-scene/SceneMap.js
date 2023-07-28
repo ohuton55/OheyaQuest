@@ -6,7 +6,7 @@ class SceneMap {
 		keepDown: false,	// 押下を維持する
 		direction: null,		// 方向
 		lastMove: 0,			// 最終移動時間
-		unitTime: 300		// どのくらい時間をかけて移動するか
+		unitTime: 250		// どのくらい時間をかけて移動するか
 	}
 
 	static start(gameData, userData) {
@@ -22,13 +22,33 @@ class SceneMap {
 		// 押しっぱなしのとき
 		if (type === 'down') 			{ options.keepDown = true }
 		if (type === 'up' || type === 'leave') { options.keepDown = false }
-		
-		console.log('tap!!');
+			
+		// 方向の判定
+		options.direction = UtilMapDirection.check(x, y, gameData.w, gameData.h);
 	}
 			
 	static anim(gameData, userData, time) {
+		// 変数を初期化
+		const options = this.options;
+	
+		// 計算→描画
+		UtilMapMove.move(gameData, userData, options, time);	// 移動計算
 		UiMap.draw(gameData, userData, time);	  // マップと自キャラ描画
 	}
-	
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
