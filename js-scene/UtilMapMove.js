@@ -7,6 +7,7 @@ class UtilMapMove {
 		if (time.sum > options.lastMove + options.unitTime) {
 			
 			// イベント判定
+			UtilMapEvent.check(gameData, userData, options)
 			
 			// おしっぱなしか
 			if (options.keepDown) {	

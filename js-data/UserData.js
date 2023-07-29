@@ -9,6 +9,8 @@ class UserData {
 		
 		// 地図用データ
 		this.mapArr = [];
+		this.townArr = [];
+		this.castle = [];
 		
 		// 移動用データ
 		this.direction = null;	// 方向

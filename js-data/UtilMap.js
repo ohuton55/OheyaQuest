@@ -6,10 +6,14 @@ class UtilMap {
 	
 		const xors = new GameUtil.Xors(seed);	// 乱数生成	
 		const landIds = gameData.landIds;	// 土地
+		const treasureArr = gameData.treasureArr; // 宝もの！
 		const w = gameData.mapW;
 		const h = gameData.mapH;
 		const size = w * h;	// マップサイズ
-		const mapArr = new Array(size).fill(landIds.plain);	// マップ配列　平地で埋める
+		const mapArr = new Array(size).fill(landIds.plain);
+		
+	
+		// マップ配列　平地で埋める
 	
 		// 山
 		for (let y = 0; y < h; y++) {
@@ -36,9 +40,11 @@ class UtilMap {
 	const yStrt = h / 2 | 0;	// 開始地点Y
 	for (let y = -1; y < 2; y++) {
 		for (let x = -1; x < 2; x++) {
-			const yPln = (yStrt + y + h) % h * w; 	// （スタート地点+差分+画面高さ）画面高さで割った余り×キャンバス幅
-			const xPln = (xStrt + x + w) % w; 	// （スタート地点+差分+画面幅）画面幅で割った余り
-			const i = yPln + xPln;
+			//const yPln = (yStrt + y + h) % h * w; 	// （スタート地点+差分+画面高さ）画面高さで割った余り×キャンバス幅
+			//const xPln = (xStrt + x + w) % w; 	// （スタート地点+差分+画面幅）画面幅で割った余り
+			//const i = yPln + xPln;
+
+			const i = ((yStrt + y + h) % h) * w + ((xStrt + x +w) % w);
 			mapArr[i] = landIds.plain;	// 開始地点から3x3ますを平地にする
 		}
 	}
@@ -53,12 +59,25 @@ class UtilMap {
 	const y = ((h * 0.8 | 0) + xors.random() % (h * 0.4 | 0)) % h;
 	const castle = { x: x, y: y };	// 城のXY位置とっとく
 	mapArr[y * w + x] = landIds.castle;	// ますを城にする
-		
-		// マップを返す
-		return {mapArr: mapArr};
-	};
 	
-	static random(max) {
-		return Math.floor(Math.random() * max);
-	}
+	const townArr = [];	// 街配列
+	for(let i = 0; i < treasureArr.length; i ++){	// 宝物の数だけ生成
+		// 位置の計算　中心を避けて、周囲に散らす
+		const x = ((w * 0.55 | 0) + xors.random() % (w * 0.9 | 0)) % w;
+		const y= ((h * 0.55 | 0) + xors.random() % (w * 0.9 | 0)) % h;
+		const pos = y * w + x;	// 配列インデックス位置を計算
+		
+		// 重複しないようにする
+		if (mapArr[pos] === landIds.town || mapArr[pos] === landIds.castle) {
+			i --;	// 生成し直す（for1回分やり直す）
+			continue;
+		}
+		
+		townArr.push({x: x, y: y});	// 街配列に座標を追加
+		mapArr[pos] = landIds.town;		// ますを街にする
+	}	
+
+		// マップ、街、城を返す
+		return {mapArr: mapArr, townArr: townArr, castle: castle};
+	};
 }

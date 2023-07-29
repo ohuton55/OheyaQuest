@@ -20,8 +20,10 @@ class SceneTitle {
 			
 			// 地図関連を初期化
 			const result = UtilMap.gen(gameData, userData.seed);
+
 			userData.mapArr = result.mapArr;	// ランダム後マップ
-			//userData.townArr = result.townArr;	// 街
+			userData.townArr = result.townArr;	// 街
+			userData.castle = result.castle;		// 城
 			userData.moveCount = 0;	// マップ表示直後の戦闘を避ける
 			
 			// シーン移動
