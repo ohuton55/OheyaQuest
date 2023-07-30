@@ -6,7 +6,7 @@ class SceneMap {
 		keepDown: false,	// 押下を維持する
 		direction: null,		// 方向
 		lastMove: 0,			// 最終移動時間
-		unitTime: 250		// どのくらい時間をかけて移動するか
+		unitTime: 300		// どのくらい時間をかけて移動するか
 	}
 
 	static start(gameData, userData) {
@@ -35,6 +35,7 @@ class SceneMap {
 		UtilMapMove.move(gameData, userData, options, time);	// 移動計算
 		UiMap.draw(gameData, userData, time);	  // マップと自キャラ描画
 		UiMapFull.draw(gameData, userData, time); // 全体マップ
+		UiStatus.draw(gameData, userData);		// ステータス
 	}
 }
 

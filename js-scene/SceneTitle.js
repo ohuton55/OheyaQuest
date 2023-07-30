@@ -8,7 +8,6 @@ class SceneTitle {
 
 		GameView.add(this.tap.bind(this, gameData, userData));	// タップの登録
 		GameAnim.add(this.anim.bind(this, gameData));	// アニメの登録
-		GameView.init('#app', gameData);
 	}
 
 	//------------------------------------------------------------

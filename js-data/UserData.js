@@ -2,7 +2,19 @@
 
 class UserData {
 	
+	constructor() {
+		this.level = 1;
+		this.exp  = 0;
+		this.hp	= 100;
+		this.hpMax = 100;
+		this.mp 	= 100;
+		this.mpMax = 100;
+		this.at	= 10;
+		this.df	= 10;	
+	}
 	
+	//------------------------------------------------------------
+	// 開始時点データに
 	setStart(gameData) {
 		// 乱数固定用シード（マップを生成するタネ
 		this.seed =  + new Date();	// new Date().getTime() と同じ
@@ -23,7 +35,5 @@ class UserData {
 		this.y = gameData.mapH / 2 | 0;
 		this.xDiff = 0;	// 差分
 		this.yDiff = 0;
-		
-		
 	}
 }
