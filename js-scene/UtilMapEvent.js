@@ -24,7 +24,6 @@ class UtilMapEvent {
 		const townIndex = userData.townArr.findIndex(
 			o => o.x === x && o.y === y
 		);
-		console.log(townIndex);
 		
 		// 街判定
 		if (townIndex !== -1) {

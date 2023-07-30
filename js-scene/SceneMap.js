@@ -34,6 +34,7 @@ class SceneMap {
 		// 計算→描画
 		UtilMapMove.move(gameData, userData, options, time);	// 移動計算
 		UiMap.draw(gameData, userData, time);	  // マップと自キャラ描画
+		UiMapFull.draw(gameData, userData, time); // 全体マップ
 	}
 }
 

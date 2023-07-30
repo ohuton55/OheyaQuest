@@ -7,7 +7,11 @@ class UtilMapMove {
 		if (time.sum > options.lastMove + options.unitTime) {
 			
 			// イベント判定
-			UtilMapEvent.check(gameData, userData, options)
+			if (UtilMapEvent.check(gameData, userData, options)) {
+				this.moveMiddle(userData, options, time);	// 移動中の処理を一度実行
+				options.keepDown = false;	// 押下維持を解除
+				return;
+			}
 			
 			// おしっぱなしか
 			if (options.keepDown) {	
