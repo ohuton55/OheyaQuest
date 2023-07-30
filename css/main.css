@@ -15,7 +15,7 @@ html, body, .app {
 	position: absolute;	/* 位置固定 */
 }
 body {
-	background: #808080;
+	background: #000;
 }
 #app canvas{
 	/* ドット絵表示 */

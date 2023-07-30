@@ -12,6 +12,10 @@ class UserData {
 		this.townArr = [];
 		this.castle = [];
 		
+		// アイテム（宝もの配列と同じサイズで、0で埋めてある）
+		// Arr.map() 埋める関数　.map(o => 0)で全てのインデックスに0を入れる
+		this.item = gameData.treasureArr.map(o => 0);
+		
 		// 移動用データ
 		this.direction = null;	// 方向
 		this.moveCount = 0;	// 移動カウンター
@@ -20,6 +24,6 @@ class UserData {
 		this.xDiff = 0;	// 差分
 		this.yDiff = 0;
 		
-		console.log('Finish__setStart!!');
+		
 	}
 }

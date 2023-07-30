@@ -5,7 +5,7 @@ class SceneTitle {
 	//------------------------------------------------------------
 	// start
 	static start(gameData, userData) {
-		console.log("SceneTitle_start!");	
+
 		GameView.add(this.tap.bind(this, gameData, userData));	// タップの登録
 		GameAnim.add(this.anim.bind(this, gameData));	// アニメの登録
 		GameView.init('#app', gameData);
