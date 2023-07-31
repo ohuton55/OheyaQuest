@@ -36,6 +36,7 @@ class SceneMap {
 		UiMap.draw(gameData, userData, time);	  // マップと自キャラ描画
 		UiMapFull.draw(gameData, userData, time); // 全体マップ
 		UiStatus.draw(gameData, userData);		// ステータス
+		UiItem.draw(gameData, userData);		// アイテム
 	}
 }
 
