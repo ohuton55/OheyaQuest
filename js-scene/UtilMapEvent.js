@@ -3,7 +3,7 @@
 class UtilMapEvent {
 	//  イベント判定
 	static check(gameData, userData, options) {
-		// 
+	
 		const x = userData.x;
 		const y = userData.y;
 		let eventOpt;
@@ -37,11 +37,39 @@ class UtilMapEvent {
 				eventOpt.item = townIndex;		// おたからげっとイベント追加
 			}
 			
-			SceneEvent.start(gameData, userData, eventOpt);
+			SceneEvent.start(gameData, userData, eventOpt);   // イベント開始
+			UtilLevel.calc(gameData, userData);	// おたからGETで計算
+			userData.hp = userData.hpMax;		// HP全回復
+			userData.mp = userData.mpMax;	// MP全回復
+			
+			return true;	// イベントあり
 		}
+		
+		//------------------------------------------------------------
+		// 戦闘判定
+		const land = userData.mapArr[y * gameData.mapW + x];
+		const enemy = gameData.enemyData[land];
+		
+		// 戦闘発生の土地で、確率を計算	rate = undefined = BOSS
+		if (enemy &&  enemy.rate !== undefined) {
+			// 確率判定		// 乱数がレートで割り切れる時発生
+			if (gameData.xors.random() % enemy.rate === 0) {
+				eventOpt = { battle: 1, battleType: land };   // 戦闘種類
+				console.log('battle!');
+				SceneEvent.start(gameData, userData, eventOpt);
+				return true;
+			}
+		}
+		//-----------------------------------------------------------
+		return false;		// イベントなし
 	}
-
 }
+
+
+
+
+
+
 
 
 

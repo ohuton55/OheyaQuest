@@ -9,12 +9,17 @@ class SceneMap {
 		unitTime: 300		// どのくらい時間をかけて移動するか
 	}
 
+	//------------------------------------------------------------
+	// 開始
 	static start(gameData, userData) {
 		
 		GameView.add(this.tap.bind(this, gameData));	// タップを登録
 		GameAnim.add(this.anim.bind(this, gameData, userData));  // アニメを登録	
+		UtilLevel.calc(gameData, userData);		// ステータス計算
 	}
 	
+	//------------------------------------------------------------
+	// たっぷ
 	static tap(gameData, x, y, type) {
 		// 変数の初期化
 		const options = this.options;		// 設定
@@ -26,7 +31,9 @@ class SceneMap {
 		// 方向の判定
 		options.direction = UtilMapDirection.check(x, y, gameData.w, gameData.h);
 	}
-			
+	
+	//------------------------------------------------------------
+	// アニメ		
 	static anim(gameData, userData, time) {
 		// 変数を初期化
 		const options = this.options;

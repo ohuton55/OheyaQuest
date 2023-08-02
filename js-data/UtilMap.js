@@ -65,6 +65,8 @@ class UtilMap {
 		// 位置の計算　中心を避けて、周囲に散らす
 		const x = ((w * 0.55 | 0) + xors.random() % (w * 0.9 | 0)) % w;
 		const y= ((h * 0.55 | 0) + xors.random() % (w * 0.9 | 0)) % h;
+		//const x = (w * 0.5 | 0) % w;
+		//const y = (h * 0.5 | 0) % w;
 		const pos = y * w + x;	// 配列インデックス位置を計算
 		
 		// 重複しないようにする

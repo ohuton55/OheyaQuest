@@ -27,8 +27,10 @@ class SceneEvent {
 		 	const context = gameData.canvasArr[layerId].context;
 		 	context.clearRect(0, 0, w, h);
 		 	
-		 	if (options.town) {
+		 	if (options.battle) {
 		 		SceneMap.start(gameData, userData);
+		 	} else {
+		 		SceneMap.start(gameData, userData);  // マップ開始		 	
 		 	}
 		 } 
 	}
@@ -75,6 +77,15 @@ class SceneEvent {
 				draw(`Get a "${gameData.treasureArr[options.item]}"!`, 10);
 			}
 		}
+		if (options.battle) {
+			// 戦闘開始
+			draw('Battle!!', 20);
+			draw('VS  ' + gameData.enemyData[options.battleType].name, 15);
+			if (options.battleType === 'last' ) {
+				draw('Last battle...', 10);
+			}
+		}	 
+		
 	}
 }
 

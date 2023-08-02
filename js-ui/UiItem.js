@@ -4,7 +4,7 @@ class UiItem {
 	// アイテムの描画
 	static draw(gameData, userData) {
 		// アイテムリストをつくる
-		const arr = UtilMIsc.getMyItemNames(gameData, userData, false, ' ');
+		const arr = UtilMisc.getMyItemNames(gameData, userData, false, ' ');
 		
 		if (arr.length === 0) { return }	// アイテムがない時、飛ばす
 		// .unshift(); ... 先頭に要素を追加する、新しい配列の長さを返す
