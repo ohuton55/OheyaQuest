@@ -5,7 +5,12 @@ class SceneBattle {
 	// 設定
 	static options = {
 		type:		null,
+		state:		null,
 		enemyData: 	{},
+		actionType:		null,
+		actionLevel:		null,
+		selectMenu:		null,
+		selectTime: 		null,
 		enemyRect: 	{},
 		menuWinSize: 	{},
 		menuArr: 		[]
@@ -34,7 +39,7 @@ class SceneBattle {
 		UtilBattleMenu.init(gameData, userData, options);	// メニュー初期化
 		
 		GameView.add(this.tap.bind(this, gameData, userData)); // タップの追加
-		GameAnim.add(this.anim.bind(this, gameData)); // アニメの追加
+		GameAnim.add(this.anim.bind(this, gameData, userData)); // アニメの追加
 
 	}
 
@@ -44,7 +49,8 @@ class SceneBattle {
 		
 		const options = this.options;
 		if (type === 'down') {
-			console.log('SceneBattle__tap');		
+			// メニューたっぷ判定
+			UtilBattleMenu.tap(gameData, userData, options, x, y);
 		}
 	}
 	
@@ -60,6 +66,9 @@ class SceneBattle {
 		// 画面をクリア
 		gameData.canvasArr[gameData.layerIds.middle].context.clearRect(0, 0, w, h);
 		gameData.canvasArr[gameData.layerIds.front].context.clearRect(0, 0, w, h);
+		
+		// 演出 - 次の進行へ
+		
 	
 		// 描画
 		UiBattleBase.draw(gameData, options, time);　// バトル基本動作

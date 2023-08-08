@@ -41,8 +41,51 @@ class UtilBattleMenu {
 	
 	//------------------------------------------------------------
 	// メニュー　タップ判定
+	static tap(gameData, userData, options, x, y) {
+		if (options.state === 'menu') {
 	
+			// メニュー選択判定
+			let select = -1;
+			const winSize = options.WinSize;
+			winSize.lineRect.forEach((o, i) => {
+				// 各行の短形内をたっぷしているか判定
+				const rect = UiWin.getLineRect(winSize.x, winSize.y, winSize, i);
+				if (GameUtil.inRectObj(x, y, rect)) { select = i }	// 選択項目
+			});
+			
+			// 洗濯しているか判定
+			if (select != -1) {
+				// 設定の更新
+				options.state = 'select';	// 進行を「選択」に
+				options.selectMenu = select;	// 選択項目(index)
+				
+				// メニューの取り出し
+				const match = options.menuArr[select]
+					// > か、何文字目かに:がある時グローバルマッチで高木取り出し
+					.replace(/> |.*:/g, '')	// 項目取り出し
+					.match('/([A-z]+)(\d*)/');	// 定義済み正規表現　- 数字文字([0-9])
+					// グローバルマッチで 英字と数を分離
+
+				options.actionType = match[1];	// 選択行動
+				options.actionLevel = match[2] * 1;   // 呪文レベル
+				
+				console.log(match[0]);
+				console.log(match[1]);
+				console.log(match[2]);
+				
+				options.selectTime = GameAnim. time.sum;  // 選択時間
+			}
+		}
+	}
 }
+
+
+
+
+
+
+
+
 
 
 
