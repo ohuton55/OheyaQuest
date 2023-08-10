@@ -46,7 +46,8 @@ class UtilBattleMenu {
 	
 			// メニュー選択判定
 			let select = -1;
-			const winSize = options.WinSize;
+			console.log('err_let');
+			const winSize = options.menuWinSize;
 			winSize.lineRect.forEach((o, i) => {
 				// 各行の短形内をたっぷしているか判定
 				const rect = UiWin.getLineRect(winSize.x, winSize.y, winSize, i);
@@ -73,7 +74,7 @@ class UtilBattleMenu {
 				console.log(match[1]);
 				console.log(match[2]);
 				
-				options.selectTime = GameAnim. time.sum;  // 選択時間
+				options.selectTime = GameAnim.time.sum;  // 選択時間
 			}
 		}
 	}

@@ -50,7 +50,21 @@ class UiWin {
 		const dY = y + this.marginY + lineNum * this.lineH;
 		UiText.draw(context, text, dX, dY, UiText.fontW, 'white');
 	};
+	
+	//------------------------------------------------------------
+	// 1 行分の短形をゲット　ウィンドウサイズをもとにする
+	static getLineRect(x, y, winSize, i) {
+		const o = winSize.lineRect[i];	// ウィンドウサイズから行の短形を指定
+		
+		return {x: x + o.x, y:  y + o.y, w: o.w, h: o.h};
+		// o.x  o.y. ... パディングの分　XY位置を調整する
+	}
 }
+
+
+
+
+
 
 
 
