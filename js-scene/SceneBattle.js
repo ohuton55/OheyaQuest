@@ -11,6 +11,8 @@ class SceneBattle {
 		actionLevel:		null,
 		selectMenu:		null,
 		selectTime: 		null,
+		numEffectNum:	   null,
+		numEffectLast:	   null,
 		enemyRect: 	{},
 		menuWinSize: 	{},
 		menuArr: 		[]
@@ -41,7 +43,8 @@ class SceneBattle {
 		
 		GameView.add(this.tap.bind(this, gameData, userData)); // タップの追加
 		GameAnim.add(this.anim.bind(this, gameData, userData)); // アニメの追加
-
+		// BGMの開始
+		GameSound.playBGM(type === 'last' ? 'bgmBattleLast' : 'bgmBattle');
 	}
 
 	//------------------------------------------------------------
@@ -80,24 +83,20 @@ class SceneBattle {
 		// 画面をクリア
 		gameData.canvasArr[gameData.layerIds.middle].context.clearRect(0, 0, w, h);
 		gameData.canvasArr[gameData.layerIds.front].context.clearRect(0, 0, w, h);
-		console.log('err1');
+
 		// 演出 - 次の進行へ　　^ ... 行頭にマッチ　$... 行末に
 		if (options.state.match(/^(select|enemy)$/)) {
 			// 進行がselect,enemyの時
-			// if (UiBattleEffect.draw(gameData, options, time)) {	// 効果
-				console.log('err2');
+			if (UiBattleEffect.draw(gameData, options, time)) {	// 効果
 				UtilBattleProcess.next(gameData, userData, options);		// 次に進行
-			//}
-		console.log('state is select,enemy.');
-		} else {
-			console.log('menu or end');
+			}
 		}
 	
 		// 描画
-		// UiBattleNumEffect.draw(gameData, options, time);   // 数字効果
+		UiBattleNumEffect.draw(gameData, options, time);   // 数字効果
 		UiBattleBase.draw(gameData, options, time);　// バトル基本動作
 		UtilBattleMenu.draw(gameData, options);        // メニュー描画
-		// UiStatus.draw(gameData, userData);	// ステータスの描画
+		UiStatus.draw(gameData, userData);	// ステータスの描画
 	}
 }
 
