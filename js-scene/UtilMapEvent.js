@@ -44,7 +44,14 @@ class UtilMapEvent {
 			
 			return true;	// イベントあり
 		}
-		
+		//------------------------------------------------------------
+		//  城判定
+		if (userData.castle.x === x && userData.castle.y === y) {
+			eventOpt = {battle: 1, battleType: 'last'};
+			SceneEvent.start(gameData, userData, eventOpt);
+			return true;
+		}
+				
 		//------------------------------------------------------------
 		// 戦闘判定
 		const land = userData.mapArr[y * gameData.mapW + x];
@@ -55,7 +62,6 @@ class UtilMapEvent {
 			// 確率判定		// 乱数がレートで割り切れる時発生
 			if (gameData.xors.random() % enemy.rate === 0) {
 				eventOpt = { battle: 1, battleType: land };   // 戦闘種類
-				console.log('battle!');
 				SceneEvent.start(gameData, userData, eventOpt);
 				return true;
 			}

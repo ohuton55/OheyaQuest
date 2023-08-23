@@ -15,9 +15,9 @@ class SceneMap {
 		GameView.add(this.tap.bind(this, gameData));			// タップの登録
 		GameAnim.add(this.anim.bind(this, gameData, userData));	// アニメの登録
 
-		//GameSound.playBGM('bgmMap');			// マップBGM再生
+		GameSound.playBGM('bgmMap');		// マップBGM再生
 		UtilLevel.calc(gameData, userData);		// 計算
-		//UtilUrlData.save(userData);				// 保存
+		UtilUrlData.save(userData);				// 保存
 	}
 
 	//------------------------------------------------------------

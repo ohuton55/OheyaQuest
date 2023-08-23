@@ -46,11 +46,13 @@ class UtilBattleMenu {
 	
 			// メニュー選択判定
 			let select = -1;
-			console.log('err_let');
+
 			const winSize = options.menuWinSize;
 			winSize.lineRect.forEach((o, i) => {
 				// 各行の短形内をたっぷしているか判定
 				const rect = UiWin.getLineRect(winSize.x, winSize.y, winSize, i);
+
+				if (GameUtil.inRectObj(x, y, rect)) { console.log(i) }
 				if (GameUtil.inRectObj(x, y, rect)) { select = i }	// 選択項目
 			});
 			
@@ -60,21 +62,29 @@ class UtilBattleMenu {
 				options.state = 'select';	// 進行を「選択」に
 				options.selectMenu = select;	// 選択項目(index)
 				
+				console.log(Object.keys(options.menuArr));
+				console.log(options.menuArr[select]);
+				console.log(options.menuArr[select].replace(/> |.*:/g, ""));
+				console.log(options.menuArr[select].replace(/> |.*:/g, "").match(/([A-z]+)(\d*)/));
+				// /g...グローバルマッチ
+				// +...直前の文字または [...] や (...) で囲まれたものが1個以上連続するものにマッチ
+				// \d...定義済み正規表現　- 数字文字([0-9])
+				
 				// メニューの取り出し
-				const match = options.menuArr[select]
-					// > か、何文字目かに:がある時グローバルマッチで高木取り出し
-					.replace(/> |.*:/g, '')	// 項目取り出し
-					.match('/([A-z]+)(\d*)/');	// 定義済み正規表現　- 数字文字([0-9])
-					// グローバルマッチで 英字と数を分離
+				const match = options.menuArr[select].replace(/> |.*:/g, "").match(/([A-z]+)(\d*)/);
+				// 正規表現で検索し、一致した場合、一致した値を配列で返す
+				// 配列のインデックスの0にマッチした該当の文字が入る
+				// 見つからない場合はnull
+					//  英字と数を分離して、項目を取り出す
 
 				options.actionType = match[1];	// 選択行動
 				options.actionLevel = match[2] * 1;   // 呪文レベル
 				
-				console.log(match[0]);
-				console.log(match[1]);
-				console.log(match[2]);
-				
 				options.selectTime = GameAnim.time.sum;  // 選択時間
+				
+				UtilBattleData.calc(gameData, userData, options, 'user');	// 自キャラの値を計算
+				// 効果音を鳴らす
+				GameSound.play(options.actionType === 'Heal' ? 'seHeal' : 'seAt');
 			}
 		}
 	}

@@ -1,7 +1,5 @@
 'use strict';
 
-// わざとエラーにしてる！！
-// class UiBattleProcess {
 class UtilBattleProcess {
 
 	// 進行
@@ -9,46 +7,52 @@ class UtilBattleProcess {
 		const enemy = options.enemyData;
 		
 		// メニュー選択後
-		if (options.state = 'select') {
+		if (options.state === 'select') {
 			options.state = 'enemy';
 			
 			if (enemy.hp === 0) {
-				UtilBattleProcess(gameData, userData, options);
+				// 敵をやっつけたら
+				this.next(gameData, userData, options);  // 次の処理に
 				return;	
 			}
 			options.actionType = enemy.skill;
 			options.actionLevel = enemy.level;
 			options.selectTime = GameAnim.time.sum;
 			
-			//UtilBattleData.calc();
-			//GameSound.play();
+			UtilBattleData.calc(gameData, userData, options, 'enemy');  // 敵計算
+			GameSound.play('seAt');	// 攻撃SE
 			
 		} else if (options.state === 'enemy') {
 			
 			if (userData.hp === 0) {
-				options.state = 'end';
-				// const levelUp = UtilLevel.addExp();
+			
+				options.state = 'end';	// 進行を終了に
+				const levelUp = UtilLevel.addExp(gameData, userData, enemy.hpMax / 20 | 0);
 				userData.hp = 20;	// 負けた時のHP
 				userData.mp = 20;	// 負けた時のMP
 				
 				const eventOpt = {lose: 1, levelUp: levelUp};				
-				setTimeout(() => SceneEvent.start(gameData, userData, options), 800);
+				setTimeout(() => SceneEvent.start(gameData, userData, eventOpt), 	500);
 			} else if (enemy.hp === 0) {
 	
 				options.state = 'end';
-				let evenOpt;
+				let eventOpt;
 				
-				if (options.type = 'last') {
+				if (options.type === 'last') {
 					// ボス戦なら
-					
-					userData.setStart(gameData);	// ゲーム最初へ
-					// UtilUrlData.save();
+					userData.setStart(gameData);   // 初期状態に
+					UtilUrlData.save(userData);
 					eventOpt = {winLast: 1};
 				} else {
-					// const levelUp = UtilLevel.addExp();
+					// 通常戦闘なら
+				
+					const levelUp = UtilLevel.addExp(gameData, userData, 
+									enemy.hpMax / 10 | 0);
+					eventOpt = {win: 1, levelUp: levelUp};
 				}
 				
-				setTimeout(() => SceneEvent.start(gameData, userData, options), 800);						
+				// 一定時間後にイベントに移行
+				setTimeout(() => SceneEvent.start(gameData, userData, eventOpt), 500);						
 			} else {
 				// 戦闘継続
 				options.state = 'menu';

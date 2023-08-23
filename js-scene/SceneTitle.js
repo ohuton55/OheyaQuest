@@ -16,6 +16,7 @@ class SceneTitle {
 		if (type === 'down') {
 		
 			// 保存データの復帰
+			UtilUrlData.load(userData);
 			
 			// 地図関連を初期化
 			const result = UtilMap.gen(gameData, userData.seed);

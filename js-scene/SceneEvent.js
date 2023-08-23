@@ -2,10 +2,15 @@
 
 class SceneEvent {
 	// 変数の初期化
-	static options = {};
+	static options = {}; 
 	
 	static start(gameData, userData, options) {
 		this.options = options;	// eventOptを入れる
+		
+		if (options.town) { GameSound.play('seTown'); }// 街到着
+		if (options.win) { GameSound.playBGM('bgmWin') }  // 戦闘勝利
+		if (options.lose) { GameSound.playBGM('bgmLose') }  // 敗北
+		if (options.winLast) { GameSound.playBGM('bgmFin') }  // ラスボス勝利
 
 		GameView.add(this.tap.bind(this, gameData, userData));
 		GameAnim.add(this.anim.bind(this, gameData));
@@ -28,9 +33,14 @@ class SceneEvent {
 		 	context.clearRect(0, 0, w, h);
 		 	
 		 	if (options.battle) {
-		 		SceneMap.start(gameData, userData);
+				SceneBattle.start(gameData, userData, options.battleType);
+		 	} else if (options.win || options.lose) {
+		 		SceneMap.start(gameData, userData);  // マップへ
+		 	} else if (options.winLast) {
+		 		SceneTitle.start(gameData, userData);  // タイトルへ
 		 	} else {
-		 		SceneMap.start(gameData, userData);  // マップ開始		 	
+ 				//GameSound.play('seTown');// 街到着
+		 		SceneMap.start(gameData, userData);  // マップ開始
 		 	}
 		 } 
 	}
@@ -53,7 +63,7 @@ class SceneEvent {
 		context.fillStyle = '#000';
 		let backY = 0;	// 背景のY位置
 		let backX = 0;
-		if (options.town) {
+		if (options.town || options.battle) {
 			backY = h * 0.1 | 0;
 			backX = w * 0.05 | 0;
 		}
@@ -84,8 +94,34 @@ class SceneEvent {
 			if (options.battleType === 'last' ) {
 				draw('Last battle...', 10);
 			}
-		}	 
-		
+		}
+		if (options.win) {
+			y = h * 0.4 | 0;
+			draw('You Win!', 30);
+			if (options.levelUp) {
+				draw('Level Up!', 15);
+			}
+		}
+		if (options.lose) {
+			// 敗北
+			y = h * 0.4 | 0;
+			draw('You Lose..', 30);
+			if (options.levelUp) {
+				draw('but Level Up.', 15);
+			}
+		}
+		if (options.winLast) {
+			draw('You won the last battle.', 10);
+			draw('You saved the kingdom!', 10);
+			
+			const charaImage = GameImage.images['chara'];
+			const charaSize = chipSize * 4;
+			
+			UiChip.draw(
+				context, charaImage, chipSize, charaSize,
+				0, 0, (w - charaSize) / 2, y - chipSize * 1.5
+			);
+		}
 	}
 }
 
