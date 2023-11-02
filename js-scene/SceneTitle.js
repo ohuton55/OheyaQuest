@@ -42,7 +42,7 @@ class SceneTitle {
 		const textArr = [
 			'Ohuton Quest',
 			'Please Click!',
-			'Created by KumadaTowa,
+			'Created by KumadaTowa',
 			'Sound by Maoudamashii'
 		];
 		
