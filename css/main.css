@@ -1,52 +1,22 @@
-*{
-	-webkit-tap-highlight-color:rgba(0,0,0,0);
-	/* タップハイライト無効 */
-	-webkit-touch-callout: none;
-	/* 長押しメニュー禁止 */
-	-webkit-user-select: none;
-	/* 長押し選択ボックス無効化 */
+* {
+  -webkit-tap-highlight-color:rgba(0,0,0,0);	/* タップハイライト無効 */
+  -webkit-touch-callout: none;					/* 長押しメニュー禁止 */
 }
 html, body, .app {
-	width: 100%;	/* 横幅100％ */
-	height: 100%;	/* 高さ100％ */
-	margin: 0;		/* 外幅0 */
-	padding: 0;		/* 内幅0 */
-	overflow: hidden;	/* はみ出した時は隠す */
-	position: absolute;	/* 位置固定 */
+  width: 100%;			/* 横幅 100% */
+  height: 100%;			/* 高さ 100% */
+  margin: 0;			/* 外幅 0 */
+  padding: 0;			/* 内幅 0 */
+  overflow: hidden;		/* はみ出した時は隠す */
+  position: absolute;	/* 位置固定 */
 }
 body {
-	background: #000;
+  background: #fff;		/* 背景は白 */
 }
-#app canvas{
-	/* ドット絵表示 */
-	image-rendering: -webkit-optimize-contrast;	/* Safari用 */
-	image-rendering: -moz-crisp-edges;			/* FireFox用 */
-	image-rendering: pixelated;
-	position: absolute;	/* 位置固定 */
+#app canvas {
+  /* ドット絵表示 */
+  image-rendering: -webkit-optimize-contrast;	/* Safari用 */
+  image-rendering: -moz-crisp-edges;			/* Firefox用 */
+  image-rendering: pixelated;
+  position: absolute;	/* 位置固定 */
 }
-  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
